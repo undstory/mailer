@@ -9,10 +9,9 @@ exports.handler = async function(event, context) {
 console.log("Function starts");
     try {
         console.log("Getting a meme...");
-        // const response = await axios.get(`https://api.humorapi.com/memes/random?api-key=${apiKey}&keywords=men,women&keywords-in-image=false&min-rating=9&media-type=png`)
-        // console.log(response);
-        // const url = response.data.url;
-        const url = "Helloe"
+        const response = await axios.get(`https://api.humorapi.com/memes/random?api-key=${apiKey}&keywords=men,women&keywords-in-image=false&min-rating=9&media-type=png`)
+        console.log(response);
+        const url = response.data.url;
 
         let transporter = nodemailer.createTransport({
             service: 'gmail',
