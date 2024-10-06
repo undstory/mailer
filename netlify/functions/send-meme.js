@@ -6,17 +6,22 @@ const nodemailer = require('nodemailer')
 const apiKey = process.env.API_KEY
 
 exports.handler = async function(event, context) {
-
+console.log("Function starts");
     try {
-        const response = await axios.get(`https://api.humorapi.com/memes/random?api-key=${apiKey}&keywords=men,women&keywords-in-image=false&min-rating=9&media-type=png`)
-        console.log(response);
-        const url = response.data.url;
+        console.log("Getting a meme...");
+        // const response = await axios.get(`https://api.humorapi.com/memes/random?api-key=${apiKey}&keywords=men,women&keywords-in-image=false&min-rating=9&media-type=png`)
+        // console.log(response);
+        // const url = response.data.url;
+        const url = "Helloe"
 
         let transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
                 user: 'undrul.undrul@gmail.com',
                 pass: 'nymvsexziabtjyfw'
+            },
+            tls: {
+                rejectUnauthorized: false
             }
         })
 
@@ -26,7 +31,7 @@ exports.handler = async function(event, context) {
             subject: 'Codziennka dawka uśmiechu',
             html: `
                 <h1>Oto Twoja codzienna dawka uśmiechu</h1>
-                <img src="getRandomMeme" alt="Random meme" style="width:500px" />
+                <img src="${url}" alt="Random meme" style="width:500px" />
                 <p>Pozdrawiam,<br />Agus</p>
             `
         }
